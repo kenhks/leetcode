@@ -27,8 +27,14 @@ class Solution2:
                 nums[next_nonzero], nums[cur] = nums[cur], nums[next_nonzero]
                 next_nonzero += 1
 
+
 def test_1():
     l = [0, 1, 0, 3, 12]
+    Solution().moveZeroes(l)
+    assert l == [1, 3, 12, 0, 0]
+
+
+def test_2():
+    l = [0, 1, 0, 3, 12]
     Solution2().moveZeroes(l)
-    print(l)
     assert l == [1, 3, 12, 0, 0]
