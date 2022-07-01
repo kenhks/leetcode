@@ -3,7 +3,7 @@ from typing import List
 
 import pytest
 
-from utils import create_function
+from utils import parametrize_solution_cls
 
 
 class Solution:
@@ -24,19 +24,13 @@ class Solution2:
         return next(i for i in unique)
 
 
-solution_func_name = "singleNumber"
-solution_class = [
-    Solution,
-    Solution2,
-]
-
-
-solutions = [
-    lambda *args, **kwargs: (
-        create_function(sol_cls, solution_func_name)(*args, **kwargs)
-    )
-    for sol_cls in solution_class
-]
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "singleNumber",
+)
 
 
 @pytest.mark.parametrize("solution", solutions)
