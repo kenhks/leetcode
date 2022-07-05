@@ -19,3 +19,7 @@ def get_LinkedList_values(node: ListNode) -> List:
         values.append(node.val)
         node = node.next
     return values
+
+
+def create_function(cls, func_name):
+    return getattr(cls(), func_name)

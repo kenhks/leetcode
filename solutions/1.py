@@ -1,7 +1,8 @@
-import enum
 from typing import List
 
 import pytest
+
+from utils import create_function
 
 
 class Solution:
@@ -26,10 +27,6 @@ solution_class = [
     Solution,
     Solution2,
 ]
-
-
-def create_function(cls, func_name):
-    return getattr(cls(), func_name)
 
 
 solutions = [
