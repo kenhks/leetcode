@@ -2,7 +2,7 @@ from typing import List
 
 import pytest
 
-from utils import create_function
+from utils import create_function, parametrize_solution_cls
 
 
 class Solution:
@@ -22,19 +22,13 @@ class Solution2:
                     return [i, i + j + 1]
 
 
-solution_func_name = "twoSum"
-solution_class = [
-    Solution,
-    Solution2,
-]
-
-
-solutions = [
-    lambda *args, **kwargs: (
-        create_function(sol_cls, solution_func_name)(*args, **kwargs)
-    )
-    for sol_cls in solution_class
-]
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "twoSum",
+)
 
 
 @pytest.mark.parametrize("solution", solutions)
