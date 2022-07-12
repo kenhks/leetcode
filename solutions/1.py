@@ -2,7 +2,7 @@ from typing import List
 
 import pytest
 
-from utils import create_function, parametrize_solution_cls
+from utils import parametrize_solution_cls
 
 
 class Solution:
