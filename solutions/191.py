@@ -1,3 +1,8 @@
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
     def hammingWeight(self, n: int) -> int:
         return bin(n).count("1")
@@ -12,25 +17,25 @@ class Solution2:
         return ans
 
 
-def test_1():
-    assert Solution().hammingWeight(int("00000000000000000000000000001011", 2)) == 3
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "hammingWeight",
+)
 
 
-def test_2():
-    assert Solution().hammingWeight(int("011", 2)) == 2
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution(int("00000000000000000000000000001011", 2)) == 3
 
 
-def test_3():
-    assert Solution().hammingWeight(int("0000000000000000000001110001011", 2)) == 6
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution(int("011", 2)) == 2
 
 
-def test_4():
-    assert Solution2().hammingWeight(int("00000000000000000000000000001011", 2)) == 3
-
-
-def test_5():
-    assert Solution2().hammingWeight(int("011", 2)) == 2
-
-
-def test_6():
-    assert Solution2().hammingWeight(int("0000000000000000000001110001011", 2)) == 6
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution(int("0000000000000000000001110001011", 2)) == 6
