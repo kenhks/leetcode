@@ -1,7 +1,14 @@
 from functools import cache
 
+import pytest
+
+from utils import parametrize_solution_cls
+
 
 class Solution:
+    """
+    Recursive
+    """
     @cache
     def climbStairs(self, n: int) -> int:
         if n == 1 or n == 2:
@@ -11,6 +18,9 @@ class Solution:
 
 
 class Solution2:
+    """
+    Iterative
+    """
     def climbStairs(self, n: int) -> int:
         a, b = 1, 1
         for _ in range(n - 1):
@@ -18,25 +28,25 @@ class Solution2:
         return a
 
 
-def test_1():
-    assert Solution().climbStairs(2) == 2
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "climbStairs",
+)
 
 
-def test_2():
-    assert Solution().climbStairs(3) == 3
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution(2) == 2
 
 
-def test_3():
-    assert Solution().climbStairs(5) == 8
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution(3) == 3
 
 
-def test_4():
-    assert Solution2().climbStairs(2) == 2
-
-
-def test_5():
-    assert Solution2().climbStairs(3) == 3
-
-
-def test_6():
-    assert Solution2().climbStairs(5) == 8
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution(5) == 8
