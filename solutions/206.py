@@ -1,8 +1,9 @@
-from platform import node
 from typing import Optional
 
+import pytest
+
 from data_structures import ListNode
-from utils import create_LinkedList, get_LinkedList_values
+from utils import create_LinkedList, get_LinkedList_values, parametrize_solution_cls
 
 
 class Solution:
@@ -16,19 +17,30 @@ class Solution:
         return prev_node
 
 
-def test_1():
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+    ],
+    "reverseList",
+)
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
     head = create_LinkedList([1, 2, 3, 4, 5])
-    result = Solution().reverseList(head)
+    result = solution(head)
     assert get_LinkedList_values(result) == [5, 4, 3, 2, 1]
 
 
-def test_2():
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
     head = create_LinkedList([1, 2])
-    result = Solution().reverseList(head)
+    result = solution(head)
     assert get_LinkedList_values(result) == [2, 1]
 
 
-def test_3():
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
     head = create_LinkedList([])
-    result = Solution().reverseList(head)
+    result = solution(head)
     assert get_LinkedList_values(result) == []
