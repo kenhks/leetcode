@@ -1,3 +1,8 @@
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
     def isHappy(self, n: int) -> bool:
         seen = set()
@@ -7,13 +12,24 @@ class Solution:
         return n == 1
 
 
-def test_1():
-    assert Solution().isHappy(19) == True
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+    ],
+    "isHappy",
+)
 
 
-def test_2():
-    assert Solution().isHappy(2) == False
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution(19)
 
 
-def test_3():
-    assert Solution().isHappy(4) == False
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert not solution(2)
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert not solution(4)
