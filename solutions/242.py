@@ -1,3 +1,10 @@
+from collections import Counter
+
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
@@ -13,9 +20,6 @@ class Solution:
             return True
 
 
-from collections import Counter
-
-
 class Solution2:
     def isAnagram(self, s: str, t: str) -> bool:
         return Counter(s) == Counter(t)
@@ -26,9 +30,21 @@ class Solution3:
         return sorted(s) == sorted(t)
 
 
-def test_1():
-    assert Solution().isAnagram("anagram", "nagaram") == True
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+        Solution3,
+    ],
+    "isAnagram",
+)
 
 
-def test_2():
-    assert Solution().isAnagram("rat", "car") == False
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution("anagram", "nagaram")
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert not solution("rat", "car")
