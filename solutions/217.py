@@ -1,5 +1,9 @@
 from typing import List
 
+import pytest
+
+from utils import parametrize_solution_cls
+
 
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
@@ -17,25 +21,25 @@ class Solution2:
         return False
 
 
-def test_1():
-    assert Solution().containsDuplicate([1, 2, 3, 1]) == True
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "containsDuplicate",
+)
 
 
-def test_2():
-    assert Solution().containsDuplicate([1, 2, 3, 4]) == False
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution([1, 2, 3, 1])
 
 
-def test_3():
-    assert Solution().containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]) == True
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert not solution([1, 2, 3, 4])
 
 
-def test_4():
-    assert Solution2().containsDuplicate([1, 2, 3, 1]) == True
-
-
-def test_5():
-    assert Solution2().containsDuplicate([1, 2, 3, 4]) == False
-
-
-def test_6():
-    assert Solution2().containsDuplicate([1, 1, 1, 3, 3, 4, 3, 2, 4, 2]) == True
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])
