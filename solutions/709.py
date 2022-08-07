@@ -1,9 +1,26 @@
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
+    """
+    Python built-it lower()
+    Time Complexity: O(n) = n
+    Space Complexity: O(n) = n
+    """
+
     def toLowerCase(self, s: str) -> str:
         return s.lower()
 
 
 class Solution2:
+    """
+    Use ASCII value
+    Time Complexity: O(n) = n
+    Space Complexity: O(n) = n
+    """
+
     def toLowerCase(self, s: str) -> str:
         lower_s = ""
         A_ord, Z_ord = ord("A"), ord("Z")
@@ -15,25 +32,25 @@ class Solution2:
         return lower_s
 
 
-def test_1():
-    assert Solution().toLowerCase("Hello") == "hello"
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "toLowerCase",
+)
 
 
-def test_2():
-    assert Solution().toLowerCase("here") == "here"
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution("Hello") == "hello"
 
 
-def test_3():
-    assert Solution().toLowerCase("LOVELY") == "lovely"
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution("here") == "here"
 
 
-def test_4():
-    assert Solution2().toLowerCase("Hello") == "hello"
-
-
-def test_5():
-    assert Solution2().toLowerCase("here") == "here"
-
-
-def test_6():
-    assert Solution2().toLowerCase("LOVELY") == "lovely"
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution("LOVELY") == "lovely"
