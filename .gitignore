@@ -13,3 +13,7 @@ __pycache__
 
 # Visual Studio Code
 .vscode/
+
+# Testing Cache
+.pytest_cache
+.mypy_cache
