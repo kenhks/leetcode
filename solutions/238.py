@@ -1,5 +1,5 @@
+from itertools import accumulate
 from typing import List
-from itertools import accumulate, product
 
 import pytest
 
@@ -8,6 +8,7 @@ from utils import parametrize_solution_cls
 
 class Solution:
     """
+    Brute Force
     Time Complexity: O(n^2)
     Space Complexity: O(n)
     """
@@ -23,8 +24,9 @@ class Solution:
 
 class Solution2:
     """
-    Time Complexity: O(3n)
-    Space Complexity: O(3n)
+    Use two array of cumulative sum
+    Time Complexity: O(n) = 3n
+    Space Complexity: O(n) = 3n
     """
 
     def productExceptSelf(self, nums: List[int]) -> List[int]:
@@ -38,8 +40,9 @@ class Solution2:
 
 class Solution3:
     """
-    Time Complexity: O(3n)
-    Space Complexity: O(n)
+    Use two pointer of cumulative sum
+    Time Complexity: O(n) = 2n
+    Space Complexity: O(n) = n + 2
     """
 
     def productExceptSelf(self, nums: List[int]) -> List[int]:
