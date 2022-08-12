@@ -1,17 +1,16 @@
-from hashlib import new
 from typing import Optional
 
 import pytest
 
 from data_structures import ListNode
-from utils import get_LinkedList_values, parametrize_solution_cls, create_LinkedList
+from utils import create_LinkedList, get_LinkedList_values, parametrize_solution_cls
 
 
 class Solution:
     """
     Directly Iterative
     m = len(l1), n = len(l2)
-    Time Complexity: O(max(m, n)),
+    Time Complexity: O(max(m, n))
     Space Complexity: O(max(m, n)) = max(m,n) + 1
     """
 
