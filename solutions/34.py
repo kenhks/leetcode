@@ -12,7 +12,7 @@ class Solution:
     Space Complexity: O(1)
     """
 
-    def searchRange(self, nums: List[int], target: int) -> int:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
         start, end = -1, -1
         if (not nums) or target < nums[0] or target > nums[-1]:
             return [start, end]
@@ -31,11 +31,11 @@ class Solution:
 class Solution2:
     """
     Binary Search then Linear Search
-    Time Complexity: O(log(n)) = log(n) + m1 + m2, where m1, m2 < (n // 2)
+    Time Complexity: O(n) = log(n) + m1 + m2, where m1, m2 < (n // 2)
     Space Complexity: O(1)
     """
 
-    def searchRange(self, nums: List[int], target: int) -> int:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
         start, end = -1, -1
         if (not nums) or target < nums[0] or target > nums[-1]:
             return [start, end]
