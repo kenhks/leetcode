@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 
 import pytest
 
@@ -6,20 +6,32 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        hmap = {}
-        for i, x in enumerate(nums):
-            if (target - x) in hmap:
-                return [i, hmap[target - x]]
-            hmap[x] = i
+    """
+    Brute Force
+    Time Complexity: O(n^2) = n * (n - 1)
+    Space Complexity: O(1)
+    """
 
-
-class Solution2:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i, x in enumerate(nums):
             for j, y in enumerate(nums[i + 1 :]):
                 if x + y == target:
                     return [i, i + j + 1]
+
+
+class Solution2:
+    """
+    Scan with hashmap
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hmap: Dict[int, int] = {}
+        for i, x in enumerate(nums):
+            if (target - x) in hmap:
+                return [i, hmap[target - x]]
+            hmap[x] = i
 
 
 solutions = parametrize_solution_cls(
