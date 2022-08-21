@@ -3,7 +3,7 @@ from typing import List, Optional
 from data_structures import ListNode, TreeNode
 
 
-def create_LinkedList(nums: List) -> ListNode:
+def create_LinkedList(nums: List) -> Optional[ListNode]:
     if not nums:
         return None
     prev_node = head = ListNode(nums[0])
