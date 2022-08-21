@@ -4,11 +4,21 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Python built-in, convert number to binary string
+    Time Complexity: O(log (nk(n-k)))
+    Space Complexity: O(1)
+    """
     def hammingWeight(self, n: int) -> int:
         return bin(n).count("1")
 
 
 class Solution2:
+    """
+    Bitwise manipulation
+    Time Complexity: O(log(2, n))
+    Space Complexity: O(1)
+    """
     def hammingWeight(self, n: int) -> int:
         ans = 0
         while n:
