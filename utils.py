@@ -24,7 +24,7 @@ def get_LinkedList_values(node: ListNode) -> List:
 def create_Tree(nums: List) -> Optional[TreeNode]:
     if not nums:
         return None
-    nodes = [TreeNode(i) for i in nums]
+    nodes = [TreeNode(i) if i is not None else None for i in nums]
     for i, node in enumerate(nodes):
         left_index = 2 * i + 1
         if left_index < len(nodes):
