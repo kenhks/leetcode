@@ -1,4 +1,3 @@
-from tkinter import Y
 from typing import List
 
 import pytest
@@ -9,7 +8,7 @@ from utils import parametrize_solution_cls
 class Solution:
     """
     Binary Search
-    Time Complexity: O (log(2, m + n))
+    Time Complexity: O(log(2, m + n))
     Space Complexity: O(1)
     """
 

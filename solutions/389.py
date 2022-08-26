@@ -1,6 +1,3 @@
-from calendar import c
-
-
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
         count_s = {}

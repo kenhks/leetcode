@@ -1,4 +1,3 @@
-from re import T
 import pytest
 
 from utils import parametrize_solution_cls
