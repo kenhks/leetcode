@@ -26,6 +26,8 @@ def create_Tree(nums: List) -> Optional[TreeNode]:
         return None
     nodes = [TreeNode(i) if i is not None else None for i in nums]
     for i, node in enumerate(nodes):
+        if not node:
+            continue
         left_index = 2 * i + 1
         if left_index < len(nodes):
             node.left = nodes[left_index]
