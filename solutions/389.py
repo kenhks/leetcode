@@ -1,4 +1,15 @@
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
+    """
+    Use hashmap counter
+    Time Complexity: O(n) = 3n
+    Space Complexity: O(n) = 2n
+    """
+
     def findTheDifference(self, s: str, t: str) -> str:
         count_s = {}
         count_t = {}
@@ -14,6 +25,12 @@ class Solution:
 
 
 class Solution2:
+    """
+    Sort
+    Time Complexity: O(n log(2, n)) = 2nlog(2, n) + 2n
+    Space Complexity: O(1)
+    """
+
     def findTheDifference(self, s: str, t: str) -> str:
         s = sorted(s)
         t = sorted(t)
@@ -24,108 +41,109 @@ class Solution2:
 
 
 class Solution3:
+    """
+    Calculate relative offset of ascii value
+    Time Complexity: O(n) = 2n
+    Space Complexity: O(1)
+    """
+
     def findTheDifference(self, s: str, t: str) -> str:
         ans = 0
         for i, j in zip(s, t):
-            ans += ord(j)
-            ans -= ord(i)
+            ans += ord(j) - ord(i)
         ans += ord(t[-1])
         return chr(ans)
 
 
 class Solution4:
+    """
+    Use bitwise xor to find unique of ascii value
+    Time Complexity: O(n) = 2n
+    Space Complexity: O(1)
+    """
+
     def findTheDifference(self, s: str, t: str) -> str:
         ans = 0
         for i, j in zip(s, t):
-            ans ^= ord(j)
-            ans ^= ord(i)
+            ans ^= ord(i) ^ ord(j)
         ans ^= ord(t[-1])
         return chr(ans)
 
 
-def test_1():
-    assert Solution().findTheDifference("abcd", "abcde") == "e"
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+        Solution3,
+        Solution4,
+    ],
+    "findTheDifference",
+)
 
 
-def test_2():
-    assert Solution().findTheDifference("", "y") == "y"
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution("abcd", "abcde") == "e"
 
 
-def test_3():
-    assert Solution().findTheDifference("a", "aa") == "a"
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution("", "y") == "y"
 
 
-def test_4():
-    assert (
-        Solution().findTheDifference(
-            "ymbgaraibkfmvocpizdydugvalagaivdbfsfbepeyccqfepzvtpyxtbadkhmwmoswrcxnargtlswqemafandgkmydtimuzvjwxvlfwlhvkrgcsithaqlcvrihrwqkpjdhgfgreqoxzfvhjzojhghfwbvpfzectwwhexthbsndovxejsntmjihchaotbgcysfdaojkjldprwyrnischrgmtvjcorypvopfmegizfkvudubnejzfqffvgdoxohuinkyygbdzmshvyqyhsozwvlhevfepdvafgkqpkmcsikfyxczcovrmwqxxbnhfzcjjcpgzjjfateajnnvlbwhyppdleahgaypxidkpwmfqwqyofwdqgxhjaxvyrzupfwesmxbjszolgwqvfiozofncbohduqgiswuiyddmwlwubetyaummenkdfptjczxemryuotrrymrfdxtrebpbjtpnuhsbnovhectpjhfhahbqrfbyxggobsweefcwxpqsspyssrmdhuelkkvyjxswjwofngpwfxvknkjviiavorwyfzlnktmfwxkvwkrwdcxjfzikdyswsuxegmhtnxjraqrdchaauazfhtklxsksbhwgjphgbasfnlwqwukprgvihntsyymdrfovaszjywuqygpvjtvlsvvqbvzsmgweiayhlubnbsitvfxawhfmfiatxvqrcwjshvovxknnxnyyfexqycrlyksderlqarqhkxyaqwlwoqcribumrqjtelhwdvaiysgjlvksrfvjlcaiwrirtkkxbwgicyhvakxgdjwnwmubkiazdjkfmotglclqndqjxethoutvjchjbkoasnnfbgrnycucfpeovruguzumgmgddqwjgdvaujhyqsqtoexmnfuluaqbxoofvotvfoiexbnprrxptchmlctzgqtkivsilwgwgvpidpvasurraqfkcmxhdapjrlrnkbklwkrvoaziznlpor",
-            "qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxbufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbcjhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxhdvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwesaxsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgrrfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqptrmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhqusvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrkeczjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfnetekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkrisrlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdqgvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawvkivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqkjjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyimkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqszuwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpihavligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorudayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzjaetahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnkaiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj",
-        )
-        == "t"
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution("a", "aa") == "a"
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_4(solution):
+    s1 = "".join(
+        [
+            "ymbgaraibkfmvocpizdydugvalagaivdbfsfbepeyccqfepzvt",
+            "pyxtbadkhmwmoswrcxnargtlswqemafandgkmydtimuzvjwxvl",
+            "fwlhvkrgcsithaqlcvrihrwqkpjdhgfgreqoxzfvhjzojhghfw",
+            "bvpfzectwwhexthbsndovxejsntmjihchaotbgcysfdaojkjld",
+            "prwyrnischrgmtvjcorypvopfmegizfkvudubnejzfqffvgdox",
+            "ohuinkyygbdzmshvyqyhsozwvlhevfepdvafgkqpkmcsikfyxc",
+            "zcovrmwqxxbnhfzcjjcpgzjjfateajnnvlbwhyppdleahgaypx",
+            "idkpwmfqwqyofwdqgxhjaxvyrzupfwesmxbjszolgwqvfiozof",
+            "ncbohduqgiswuiyddmwlwubetyaummenkdfptjczxemryuotrr",
+            "ymrfdxtrebpbjtpnuhsbnovhectpjhfhahbqrfbyxggobsweef",
+            "cwxpqsspyssrmdhuelkkvyjxswjwofngpwfxvknkjviiavorwy",
+            "fzlnktmfwxkvwkrwdcxjfzikdyswsuxegmhtnxjraqrdchaaua",
+            "zfhtklxsksbhwgjphgbasfnlwqwukprgvihntsyymdrfovaszj",
+            "ywuqygpvjtvlsvvqbvzsmgweiayhlubnbsitvfxawhfmfiatxv",
+            "qrcwjshvovxknnxnyyfexqycrlyksderlqarqhkxyaqwlwoqcr",
+            "ibumrqjtelhwdvaiysgjlvksrfvjlcaiwrirtkkxbwgicyhvak",
+            "xgdjwnwmubkiazdjkfmotglclqndqjxethoutvjchjbkoasnnf",
+            "bgrnycucfpeovruguzumgmgddqwjgdvaujhyqsqtoexmnfulua",
+            "qbxoofvotvfoiexbnprrxptchmlctzgqtkivsilwgwgvpidpva",
+            "surraqfkcmxhdapjrlrnkbklwkrvoaziznlpor",
+        ]
     )
-
-
-def test_5():
-    assert Solution2().findTheDifference("abcd", "abcde") == "e"
-
-
-def test_6():
-    assert Solution2().findTheDifference("", "y") == "y"
-
-
-def test_7():
-    assert Solution2().findTheDifference("a", "aa") == "a"
-
-
-def test_8():
-    assert (
-        Solution2().findTheDifference(
-            "ymbgaraibkfmvocpizdydugvalagaivdbfsfbepeyccqfepzvtpyxtbadkhmwmoswrcxnargtlswqemafandgkmydtimuzvjwxvlfwlhvkrgcsithaqlcvrihrwqkpjdhgfgreqoxzfvhjzojhghfwbvpfzectwwhexthbsndovxejsntmjihchaotbgcysfdaojkjldprwyrnischrgmtvjcorypvopfmegizfkvudubnejzfqffvgdoxohuinkyygbdzmshvyqyhsozwvlhevfepdvafgkqpkmcsikfyxczcovrmwqxxbnhfzcjjcpgzjjfateajnnvlbwhyppdleahgaypxidkpwmfqwqyofwdqgxhjaxvyrzupfwesmxbjszolgwqvfiozofncbohduqgiswuiyddmwlwubetyaummenkdfptjczxemryuotrrymrfdxtrebpbjtpnuhsbnovhectpjhfhahbqrfbyxggobsweefcwxpqsspyssrmdhuelkkvyjxswjwofngpwfxvknkjviiavorwyfzlnktmfwxkvwkrwdcxjfzikdyswsuxegmhtnxjraqrdchaauazfhtklxsksbhwgjphgbasfnlwqwukprgvihntsyymdrfovaszjywuqygpvjtvlsvvqbvzsmgweiayhlubnbsitvfxawhfmfiatxvqrcwjshvovxknnxnyyfexqycrlyksderlqarqhkxyaqwlwoqcribumrqjtelhwdvaiysgjlvksrfvjlcaiwrirtkkxbwgicyhvakxgdjwnwmubkiazdjkfmotglclqndqjxethoutvjchjbkoasnnfbgrnycucfpeovruguzumgmgddqwjgdvaujhyqsqtoexmnfuluaqbxoofvotvfoiexbnprrxptchmlctzgqtkivsilwgwgvpidpvasurraqfkcmxhdapjrlrnkbklwkrvoaziznlpor",
-            "qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxbufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbcjhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxhdvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwesaxsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgrrfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqptrmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhqusvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrkeczjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfnetekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkrisrlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdqgvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawvkivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqkjjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyimkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqszuwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpihavligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorudayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzjaetahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnkaiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj",
-        )
-        == "t"
+    s2 = "".join(
+        [
+            "qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxb",
+            "ufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbc",
+            "jhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxh",
+            "dvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwes",
+            "axsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgr",
+            "rfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqpt",
+            "rmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhq",
+            "usvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrke",
+            "czjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfn",
+            "etekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkris",
+            "rlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdq",
+            "gvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawv",
+            "kivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqk",
+            "jjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyi",
+            "mkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqsz",
+            "uwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpih",
+            "avligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorud",
+            "ayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzja",
+            "etahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnk",
+            "aiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj",
+        ]
     )
-
-
-def test_9():
-    assert Solution3().findTheDifference("abcd", "abcde") == "e"
-
-
-def test_10():
-    assert Solution3().findTheDifference("", "y") == "y"
-
-
-def test_11():
-    assert Solution3().findTheDifference("a", "aa") == "a"
-
-
-def test_12():
-    assert (
-        Solution3().findTheDifference(
-            "ymbgaraibkfmvocpizdydugvalagaivdbfsfbepeyccqfepzvtpyxtbadkhmwmoswrcxnargtlswqemafandgkmydtimuzvjwxvlfwlhvkrgcsithaqlcvrihrwqkpjdhgfgreqoxzfvhjzojhghfwbvpfzectwwhexthbsndovxejsntmjihchaotbgcysfdaojkjldprwyrnischrgmtvjcorypvopfmegizfkvudubnejzfqffvgdoxohuinkyygbdzmshvyqyhsozwvlhevfepdvafgkqpkmcsikfyxczcovrmwqxxbnhfzcjjcpgzjjfateajnnvlbwhyppdleahgaypxidkpwmfqwqyofwdqgxhjaxvyrzupfwesmxbjszolgwqvfiozofncbohduqgiswuiyddmwlwubetyaummenkdfptjczxemryuotrrymrfdxtrebpbjtpnuhsbnovhectpjhfhahbqrfbyxggobsweefcwxpqsspyssrmdhuelkkvyjxswjwofngpwfxvknkjviiavorwyfzlnktmfwxkvwkrwdcxjfzikdyswsuxegmhtnxjraqrdchaauazfhtklxsksbhwgjphgbasfnlwqwukprgvihntsyymdrfovaszjywuqygpvjtvlsvvqbvzsmgweiayhlubnbsitvfxawhfmfiatxvqrcwjshvovxknnxnyyfexqycrlyksderlqarqhkxyaqwlwoqcribumrqjtelhwdvaiysgjlvksrfvjlcaiwrirtkkxbwgicyhvakxgdjwnwmubkiazdjkfmotglclqndqjxethoutvjchjbkoasnnfbgrnycucfpeovruguzumgmgddqwjgdvaujhyqsqtoexmnfuluaqbxoofvotvfoiexbnprrxptchmlctzgqtkivsilwgwgvpidpvasurraqfkcmxhdapjrlrnkbklwkrvoaziznlpor",
-            "qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxbufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbcjhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxhdvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwesaxsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgrrfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqptrmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhqusvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrkeczjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfnetekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkrisrlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdqgvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawvkivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqkjjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyimkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqszuwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpihavligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorudayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzjaetahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnkaiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj",
-        )
-        == "t"
-    )
-
-
-def test_13():
-    assert Solution4().findTheDifference("abcd", "abcde") == "e"
-
-
-def test_14():
-    assert Solution4().findTheDifference("", "y") == "y"
-
-
-def test_15():
-    assert Solution4().findTheDifference("a", "aa") == "a"
-
-
-def test_16():
-    assert (
-        Solution4().findTheDifference(
-            "ymbgaraibkfmvocpizdydugvalagaivdbfsfbepeyccqfepzvtpyxtbadkhmwmoswrcxnargtlswqemafandgkmydtimuzvjwxvlfwlhvkrgcsithaqlcvrihrwqkpjdhgfgreqoxzfvhjzojhghfwbvpfzectwwhexthbsndovxejsntmjihchaotbgcysfdaojkjldprwyrnischrgmtvjcorypvopfmegizfkvudubnejzfqffvgdoxohuinkyygbdzmshvyqyhsozwvlhevfepdvafgkqpkmcsikfyxczcovrmwqxxbnhfzcjjcpgzjjfateajnnvlbwhyppdleahgaypxidkpwmfqwqyofwdqgxhjaxvyrzupfwesmxbjszolgwqvfiozofncbohduqgiswuiyddmwlwubetyaummenkdfptjczxemryuotrrymrfdxtrebpbjtpnuhsbnovhectpjhfhahbqrfbyxggobsweefcwxpqsspyssrmdhuelkkvyjxswjwofngpwfxvknkjviiavorwyfzlnktmfwxkvwkrwdcxjfzikdyswsuxegmhtnxjraqrdchaauazfhtklxsksbhwgjphgbasfnlwqwukprgvihntsyymdrfovaszjywuqygpvjtvlsvvqbvzsmgweiayhlubnbsitvfxawhfmfiatxvqrcwjshvovxknnxnyyfexqycrlyksderlqarqhkxyaqwlwoqcribumrqjtelhwdvaiysgjlvksrfvjlcaiwrirtkkxbwgicyhvakxgdjwnwmubkiazdjkfmotglclqndqjxethoutvjchjbkoasnnfbgrnycucfpeovruguzumgmgddqwjgdvaujhyqsqtoexmnfuluaqbxoofvotvfoiexbnprrxptchmlctzgqtkivsilwgwgvpidpvasurraqfkcmxhdapjrlrnkbklwkrvoaziznlpor",
-            "qhxepbshlrhoecdaodgpousbzfcqjxulatciapuftffahhlmxbufgjuxstfjvljybfxnenlacmjqoymvamphpxnolwijwcecgwbcjhgdybfffwoygikvoecdggplfohemfypxfsvdrseyhmvkoovxhdvoavsqqbrsqrkqhbtmgwaurgisloqjixfwfvwtszcxwktkwesaxsmhsvlitegrlzkvfqoiiwxbzskzoewbkxtphapavbyvhzvgrrfriddnsrftfowhdanvhjvurhljmpxvpddxmzfgwwpkjrfgqptrmumoemhfpojnxzwlrxkcafvbhlwrapubhveattfifsmiounhqusvhywnxhwrgamgnesxmzliyzisqrwvkiyderyotxhwspqrrkeczjysfujvovsfcfouykcqyjoobfdgnlswfzjmyucaxuaslzwfnetekymrwbvponiaojdqnbmboldvvitamntwnyaeppjaohwkrisrlrgwcjqqgxeqerjrbapfzurcwxhcwzugcgnirkkrxdthtbmdqgvqxilllrsbwjhwqszrjtzyetwubdrlyakzxcveufvhqugyawvkivwonvmrgnchkzdysngqdibhkyboyftxcvvjoggecjsajbuqkjjxfvynrjsnvtfvgpgveycxidhhfauvjovmnbqgoxsafknluyimkczykwdgvqwlvvgdmufxdypwnajkncoynqticfetcdafvtqszuwfmrdggifokwmkgzuxnhncmnsstffqpqbplypapctctfhqpihavligbrutxmmygiyaklqtakdidvnvrjfteazeqmbgklrgrorudayokxptswwkcircwuhcavhdparjfkjypkyxhbgwxbkvpvrtzjaetahmxevmkhdfyidhrdeejapfbafwmdqjqszwnwzgclitdhlnkaiyldwkwwzvhyorgbysyjbxsspnjdewjxbhpsvj",
-        )
-        == "t"
-    )
+    assert solution(s1, s2) == "t"
