@@ -1,7 +1,16 @@
 from typing import List
 
+import pytest
+
+from utils import parametrize_solution_cls
+
 
 class Solution:
+    """
+    Python built-in
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
     def rotate(self, nums: List[int], k: int) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -15,6 +24,11 @@ class Solution:
 
 
 class Solution2:
+    """
+    Python built-in
+    Time Complexity: O(n) = 2n
+    Space Complexity: O(1)
+    """
     def rotate(self, nums: List[int], k: int) -> None:
         """
         Do not return anything, modify nums in-place instead.
@@ -32,13 +46,24 @@ class Solution2:
         reverse(nums, k, len(nums) - 1)
 
 
-def test_1():
-    l = [1, 2, 3, 4, 5, 6, 7]
-    Solution2().rotate(l, 3)
-    assert l == [5, 6, 7, 1, 2, 3, 4]
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "rotate",
+)
 
 
-def test_2():
-    l = [-1, -100, 3, 99]
-    Solution2().rotate(l, 2)
-    assert l == [3, 99, -1, -100]
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    nums = [1, 2, 3, 4, 5, 6, 7]
+    solution(nums, 3)
+    assert nums == [5, 6, 7, 1, 2, 3, 4]
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    nums = [-1, -100, 3, 99]
+    solution(nums, 2)
+    assert nums == [3, 99, -1, -100]
