@@ -11,7 +11,7 @@ class Solution:
     Use Hashmap
     Time Complexity: O(S)
     Space Complexity: O(S)
-    S = the sum of the lengths of words 
+    S = the sum of the lengths of words
     """
 
     code_map = {
@@ -63,7 +63,7 @@ class Solution2:
     Use fixed size array
     Time Complexity: O(S)
     Space Complexity: O(S)
-    S = the sum of the lengths of words 
+    S = the sum of the lengths of words
     """
 
     code_map = [

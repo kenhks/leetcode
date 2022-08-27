@@ -26,14 +26,28 @@ solutions = parametrize_solution_cls(
 
 @pytest.mark.parametrize("solution", solutions)
 def test_1(solution):
-    assert solution([[1,2,3],[3,2,1]]) == 6
+    accounts = [
+        [1, 2, 3],
+        [3, 2, 1],
+    ]
+    assert solution(accounts) == 6
 
 
 @pytest.mark.parametrize("solution", solutions)
 def test_2(solution):
-    assert solution([[1,5],[7,3],[3,5]]) == 10
+    accounts = [
+        [1, 5],
+        [7, 3],
+        [3, 5],
+    ]
+    assert solution(accounts) == 10
 
 
 @pytest.mark.parametrize("solution", solutions)
 def test_3(solution):
-    assert solution([[2,8,7],[7,1,3],[1,9,5]]) == 17
+    accounts = [
+        [2, 8, 7],
+        [7, 1, 3],
+        [1, 9, 5],
+    ]
+    assert solution(accounts) == 17

@@ -18,12 +18,12 @@ class Solution:
         while head:
             values.append(head.val)
             head = head.next
-        l, r = 0, len(values) - 1
-        while l < r:
-            if values[l] != values[r]:
+        left, right = 0, len(values) - 1
+        while left < right:
+            if values[left] != values[right]:
                 return False
-            l += 1
-            r -= 1
+            left += 1
+            right -= 1
         return True
 
 

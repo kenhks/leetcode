@@ -29,14 +29,14 @@ class Solution2:
         else:
             digits = []
             while x > 0:
-                x, r = divmod(x, 10)
-                digits.append(r)
-            l, r = 0, len(digits) - 1
-            while l < r:
-                if digits[l] != digits[r]:
+                x, right = divmod(x, 10)
+                digits.append(right)
+            left, right = 0, len(digits) - 1
+            while left < right:
+                if digits[left] != digits[right]:
                     return False
-                l += 1
-                r -= 1
+                left += 1
+                right -= 1
             return True
 
 

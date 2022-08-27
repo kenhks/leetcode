@@ -31,17 +31,17 @@ class Solution:
     """
 
     def guessNumber(self, n: int) -> int:
-        l, r = 0, n
-        while l < r:
-            mid = (l + r) // 2
+        left, right = 0, n
+        while left < right:
+            mid = (left + right) // 2
             guess_mid = guess(mid)
             if guess_mid == 0:
                 return mid
             elif guess_mid == 1:
-                l = mid + 1
+                left = mid + 1
             elif guess_mid == -1:
-                r = mid - 1
-        return r
+                right = mid - 1
+        return right
 
 
 solutions = parametrize_solution_cls(

@@ -39,16 +39,16 @@ class Solution2:
         start, end = -1, -1
         if (not nums) or target < nums[0] or target > nums[-1]:
             return [start, end]
-        l, r = 0, len(nums) - 1
-        while l <= r:
-            m = (l + r) // 2
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            m = (left + right) // 2
             if nums[m] == target:
                 start = end = m
                 break
             elif nums[m] > target:
-                r = m - 1
+                right = m - 1
             elif nums[m] < target:
-                l = m + 1
+                left = m + 1
         i = m - 1
         while i > -1:
             if nums[i] != target:
@@ -75,29 +75,29 @@ class Solution3:
         def find_first():
             result = -1
             if nums and target >= nums[0]:
-                l, r = 0, len(nums) - 1
-                while l <= r:
-                    m = (l + r) // 2
+                left, right = 0, len(nums) - 1
+                while left <= right:
+                    m = (left + right) // 2
                     if nums[m] == target:
                         result = m
                     if nums[m] >= target:
-                        r = m - 1
+                        right = m - 1
                     else:
-                        l = m + 1
+                        left = m + 1
             return result
 
         def find_last():
             result = -1
             if nums and target <= nums[-1]:
-                l, r = 0, len(nums) - 1
-                while l <= r:
-                    m = (l + r) // 2
+                left, right = 0, len(nums) - 1
+                while left <= right:
+                    m = (left + right) // 2
                     if nums[m] == target:
                         result = m
                     if nums[m] <= target:
-                        l = m + 1
+                        left = m + 1
                     else:
-                        r = m - 1
+                        right = m - 1
             return result
 
         return [find_first(), find_last()]

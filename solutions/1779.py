@@ -13,25 +13,27 @@ class Solution:
                     min_distance = pt_distance
         return ans
 
+
 def test_1():
     points = [
-        [1,2],
-        [3,1],
-        [2,4],
-        [2,3],
-        [4,4],
+        [1, 2],
+        [3, 1],
+        [2, 4],
+        [2, 3],
+        [4, 4],
     ]
     assert Solution().nearestValidPoint(3, 4, points) == 2
 
 
 def test_2():
     points = [
-        [3,4],
+        [3, 4],
     ]
     assert Solution().nearestValidPoint(3, 4, points) == 0
 
+
 def test_3():
     points = [
-        [2,3],
+        [2, 3],
     ]
     assert Solution().nearestValidPoint(3, 4, points) == -1

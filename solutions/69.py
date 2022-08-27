@@ -11,17 +11,17 @@ class Solution:
     """
 
     def mySqrt(self, x: int) -> int:
-        l, r = 0, x
-        while l < r:
-            mid = (l + r) // 2
+        left, right = 0, x
+        while left < right:
+            mid = (left + right) // 2
             mid_square = mid * mid
             if mid_square <= x < (mid + 1) * (mid + 1):
                 return mid
             elif mid_square < x:
-                l = mid + 1
+                left = mid + 1
             elif mid_square > x:
-                r = mid - 1
-        return r
+                right = mid - 1
+        return right
 
 
 solutions = parametrize_solution_cls(
