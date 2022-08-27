@@ -1,36 +1,25 @@
+from typing import List
+
+
 class Solution:
-    def areAlmostEqual(self, s1: str, s2: str) -> bool:
-        diff = []
-        for i in range(len(s1)):
-            if s1[i] != s2[i]:
-                if len(diff) >= 3:
-                    return False
-                if not diff:
-                    diff.append((s1[i], s2[i]))
-                else:
-                    diff.append((s2[i], s1[i]))
-        return not diff or (len(diff) == 2 and diff[0] == diff[1])
+    def arraySign(self, nums: List[int]) -> int:
+        sign = 1
+        for i in nums:
+            if i == 0:
+                sign = 0
+                break
+            elif i < 0:
+                sign = -sign
+        return sign
 
 
 def test_1():
-    assert Solution().areAlmostEqual("bank", "kanb") == True
+    assert Solution().arraySign([-1, -2, -3, -4, 3, 2, 1]) == 1
 
 
 def test_2():
-    assert Solution().areAlmostEqual("attack", "defend") == False
+    assert Solution().arraySign([1, 5, 0, 2, -3]) == 0
 
 
 def test_3():
-    assert Solution().areAlmostEqual("kelb", "kelb") == True
-
-
-def test_4():
-    assert Solution().areAlmostEqual("batkn", "kanbt") == False
-
-
-def test_5():
-    assert Solution().areAlmostEqual("qweabcd", "qefabcd") == False
-
-
-def test_6():
-    assert Solution().areAlmostEqual("aa", "ac") == False
+    assert Solution().arraySign([-1, 1, -1, 1, -1]) == -1
