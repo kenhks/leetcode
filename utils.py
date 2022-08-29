@@ -1,4 +1,5 @@
-from typing import List, Optional
+from platform import node
+from typing import List, Optional, Tuple
 
 from data_structures import ListNode, TreeNode
 
@@ -11,6 +12,16 @@ def create_LinkedList(nums: List) -> Optional[ListNode]:
         prev_node.next = ListNode(i)
         prev_node = prev_node.next
     return head
+
+
+def create_LinkedListCycle(nums: List, cycle: Tuple[int, int]) -> Optional[ListNode]:
+    if not nums:
+        return None
+    nodes = [ListNode(i) for i in nums]
+    for i, j in zip(nodes, nodes[1:]):
+        i.next = j
+    nodes[cycle[0]].next = nodes[cycle[-1]]
+    return nodes[0]
 
 
 def get_LinkedList_values(node: ListNode) -> List:
