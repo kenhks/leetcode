@@ -5,7 +5,7 @@ from utils import parametrize_solution_cls
 
 class Solution:
     """
-    Python built-it lower()
+    Two Pointers
     Time Complexity: O(n) = n
     Space Complexity: O(n) = n
     """
