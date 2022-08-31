@@ -6,6 +6,12 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Use hashmap as frequency count
+    Time Complexity: O(n) = 3n
+    Time Complexity: O(n) = n
+    """
+
     def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
@@ -21,11 +27,26 @@ class Solution:
 
 
 class Solution2:
+    """
+    Python built-in counter
+    Time Complexity: O(n) = 3n
+    Time Complexity: O(n) = 2n
+    """
+
     def isAnagram(self, s: str, t: str) -> bool:
-        return Counter(s) == Counter(t)
+        if len(s) != len(t):
+            return False
+        else:
+            return Counter(s) == Counter(t)
 
 
 class Solution3:
+    """
+    Sort the input string
+    Time Complexity: O(nlog(2, n)) = 2nlog(2, n) + n
+    Time Complexity: O(n) = n
+    """
+
     def isAnagram(self, s: str, t: str) -> bool:
         return sorted(s) == sorted(t)
 
