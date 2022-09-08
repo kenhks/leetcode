@@ -1,0 +1,11 @@
+grep -Eio "\w+" words.txt | sort | uniq -c | sort -nr | awk '{print $2" "$1}'
+
+# words.txt
+the day is sunny the the
+the sunny is is
+
+# result
+the 4
+is 3
+sunny 2
+day 1

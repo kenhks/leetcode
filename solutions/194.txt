@@ -1,0 +1,11 @@
+# Command
+awk '{for(i=0;++i<=NF;)a[i]=a[i]?a[i] FS $i:$i}END{for(i=0;i++<NF;)print a[i]}' file.txt
+
+# file.txt
+name age
+alice 21
+ryan 30
+
+# result
+name alice ryan
+age 21 30
