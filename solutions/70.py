@@ -8,6 +8,8 @@ from utils import parametrize_solution_cls
 class Solution:
     """
     Recursive
+    Time Complexity: O(n)
+    Space Complexity: O(n)
     """
     @cache
     def climbStairs(self, n: int) -> int:
@@ -20,6 +22,8 @@ class Solution:
 class Solution2:
     """
     Iterative
+    Time Complexity: O(n)
+    Space Complexity: O(1)
     """
     def climbStairs(self, n: int) -> int:
         a, b = 1, 1
