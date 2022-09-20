@@ -1,7 +1,17 @@
 from typing import List
 
+import pytest
+
+from utils import parametrize_solution_cls
+
 
 class Solution:
+    """
+    Swap in-place
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+
     def reverseString(self, s: List[str]) -> None:
         """
         Do not return anything, modify s in-place instead.
@@ -13,13 +23,23 @@ class Solution:
             right -= 1
 
 
-def test_1():
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+    ],
+    "reverseString",
+)
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
     s = ["h", "e", "l", "l", "o"]
-    Solution().reverseString(s)
+    solution(s)
     assert s == ["o", "l", "l", "e", "h"]
 
 
-def test_2():
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
     s = ["H", "a", "n", "n", "a", "h"]
-    Solution().reverseString(s)
+    solution(s)
     assert s == ["h", "a", "n", "n", "a", "H"]
