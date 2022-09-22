@@ -31,12 +31,11 @@ class Solution2:
         left, right = 0, 1
         max_p = 0
         while right < len(prices):
-            if prices[right] < prices[left]:
-                left = right
-                right += 1
-            elif prices[right] >= prices[left]:
+            if prices[left] < prices[right]:
                 max_p = max(max_p, prices[right] - prices[left])
-                right += 1
+            else:
+                left = right
+            right += 1
         return max_p
 
 
@@ -48,14 +47,15 @@ class Solution3:
     """
 
     def maxProfit(self, prices: List[int]) -> int:
-        buy = float("inf")
-        profit = 0
-        for _, x in enumerate(prices):
+        buy = prices[0]
+        maximum = 0
+        for x in prices[1:]:
+            c_profit = x - buy
+            if c_profit > maximum:
+                maximum = c_profit
             if x < buy:
                 buy = x
-            elif x - buy > profit:
-                profit = x - buy
-        return profit
+        return maximum
 
 
 solutions = parametrize_solution_cls(
