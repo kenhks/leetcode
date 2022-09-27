@@ -11,11 +11,11 @@ class Solution:
     """
 
     def convertToTitle(self, columnNumber: int) -> str:
-        digits = []
+        col_str = ""
         while columnNumber > 0:
             columnNumber, d = divmod(columnNumber - 1, 26)
-            digits.append(d)
-        return "".join(chr(i + 65) for i in digits[::-1])
+            col_str = chr(d + 65) + col_str
+        return col_str
 
 
 solutions = parametrize_solution_cls(
