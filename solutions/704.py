@@ -11,7 +11,7 @@ class Solution:
     Space Complexity: O(1)
     """
 
-    def search(nums: List[int], target: int) -> int:
+    def search(self, nums: List[int], target: int) -> int:
         index = -1
         left, right = 0, len(nums) - 1
         while left <= right:

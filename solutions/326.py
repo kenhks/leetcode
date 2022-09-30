@@ -44,7 +44,7 @@ class Solution3:
 
     def isPowerOfThree(self, n: int) -> bool:
         while n > 3:
-            n /= 3
+            n = n // 3
         return n > 0 and (n == 3 or n == 1)
 
 

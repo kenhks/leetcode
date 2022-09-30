@@ -14,9 +14,12 @@ class Solution:
 
     def missingNumber(self, nums: List[int]) -> int:
         num_map = set(nums)
+        missing = -1
         for i in range(len(nums) + 1):
             if i not in num_map:
-                return i
+                missing = i
+                break
+        return missing
 
 
 class Solution2:

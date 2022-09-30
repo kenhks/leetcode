@@ -13,10 +13,13 @@ class Solution:
     """
 
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        result: List = []
         for i, x in enumerate(nums):
             for j, y in enumerate(nums[i + 1 :]):
                 if x + y == target:
-                    return [i, i + j + 1]
+                    result = [i, i + j + 1]
+                    break
+        return result
 
 
 class Solution2:
@@ -27,11 +30,14 @@ class Solution2:
     """
 
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        result: List = []
         hmap: Dict[int, int] = {}
         for i, x in enumerate(nums):
             if (target - x) in hmap:
-                return [i, hmap[target - x]]
+                result = [i, hmap[target - x]]
+                break
             hmap[x] = i
+        return result
 
 
 solutions = parametrize_solution_cls(

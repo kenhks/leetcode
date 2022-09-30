@@ -1,3 +1,5 @@
+from typing import Dict
+
 import pytest
 
 from utils import parametrize_solution_cls
@@ -11,7 +13,7 @@ class Solution:
     """
 
     def longestPalindrome(self, s: str) -> int:
-        counter = {}
+        counter: Dict[str, int] = {}
         for c in s:
             if c in counter:
                 counter[c] += 1

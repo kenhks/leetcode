@@ -1,3 +1,5 @@
+from typing import Dict
+
 import pytest
 
 from utils import parametrize_solution_cls
@@ -11,8 +13,8 @@ class Solution:
     """
 
     def findTheDifference(self, s: str, t: str) -> str:
-        count_s = {}
-        count_t = {}
+        count_s: Dict[str, int] = {}
+        count_t: Dict[str, int] = {}
         for char in s:
             count_s[char] = count_s.get(char, 0) + 1
         for char in t:
