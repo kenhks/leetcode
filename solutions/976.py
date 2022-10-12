@@ -1,7 +1,17 @@
 from typing import List
 
+import pytest
+
+from utils import parametrize_solution_cls
+
 
 class Solution:
+    """
+    Sort by desending and check for triangle equality
+    Time Complexity: O(nlog(2, n)) = nlog(2, n) + n
+    Space Complexity: O(1)
+    """
+
     def largestPerimeter(self, nums: List[int]) -> int:
         nums.sort(reverse=True)
         for i in range(len(nums) - 2):
@@ -11,9 +21,19 @@ class Solution:
         return 0
 
 
-def test_1():
-    assert Solution().largestPerimeter([2, 1, 2]) == 5
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+    ],
+    "largestPerimeter",
+)
 
 
-def test_2():
-    assert Solution().largestPerimeter([1, 2, 1]) == 0
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution([2, 1, 2]) == 5
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution([1, 2, 1]) == 0
