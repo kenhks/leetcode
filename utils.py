@@ -1,4 +1,3 @@
-from platform import node
 from typing import List, Optional, Tuple
 
 from data_structures import ListNode, TreeNode
