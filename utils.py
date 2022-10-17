@@ -1,16 +1,21 @@
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Union
 
 from data_structures import ListNode, TreeNode
 
 
-def create_LinkedList(nums: List) -> Optional[ListNode]:
+def create_LinkedList(
+    nums: List, return_tail=False
+) -> Union[Tuple[Optional[ListNode], Optional[ListNode]], Optional[ListNode]]:
     if not nums:
         return None
     prev_node = head = ListNode(nums[0])
     for i in nums[1:]:
         prev_node.next = ListNode(i)
         prev_node = prev_node.next
-    return head
+    if return_tail:
+        return head, prev_node
+    else:
+        return head
 
 
 def create_LinkedListCycle(nums: List, cycle: Tuple[int, int]) -> Optional[ListNode]:
