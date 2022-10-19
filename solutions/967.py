@@ -49,7 +49,7 @@ class Solution2:
                 ans.append(valid_numbers)
 
         if k > 0:
-            ans = []
+            ans: List[int] = []
             numbers = [[i] for i in range(1, 10) if (i - k >= 0) or i + k < 10]
             for i in numbers:
                 get_next_digits(i, n - 1)
