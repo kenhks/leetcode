@@ -15,7 +15,7 @@ pytest-sugar = "^0.9.5"
 flake8 = "4.0.1"
 pyproject-flake8 = "^0.0.1-alpha.5"
 mypy = "^0.971"
-pytest-mock = "^3.8.2"
+pytest-mock = "^3.10.0"
 pytest-timeout = "^2.1.0"
 
 [tool.pytest.ini_options]
