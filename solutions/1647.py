@@ -9,7 +9,7 @@ class Solution:
     """
     Check seen freq with hashmap
     Time Complexity: O(n)
-    Space Complexity: O(n)
+    Space Complexity: O(1) = 26
     """
 
     def minDeletions(self, s: str) -> int:
