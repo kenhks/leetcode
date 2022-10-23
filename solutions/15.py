@@ -7,33 +7,49 @@ from utils import parametrize_solution_cls
 
 class Solution:
     """
-    Hashed without sort
-    Time Complexity: O(nlogn + n^2)
+    Brute Force:
+    Time Complexity: O(n^3)
+    Space Complexity: O(n)
+    """
+
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result = set()
+        for i in range(len(nums) - 2):
+            for j in range(i + 1, len(nums) - 1):
+                for k in range(j + 1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] == 0:
+                        result.add(tuple(sorted([nums[i], nums[j], nums[k]])))
+        return [list(x) for x in result]
+
+
+class Solution2:
+    """
+    Hashset
+    Time Complexity: O(n^2log(2, n))
+    Time Complexity: O(n^2)
     """
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         result = set()
         for i, x in enumerate(nums[:-2]):
-            freq = {}
+            seen = set()
             target = -x
             sub_result = []
             for y in nums[i + 1 :]:
                 z = target - y
-                if z in freq:
+                if z in seen:
                     sub_result.append((y, z))
-                if y not in freq:
-                    freq[y] = 1
-                else:
-                    freq[y] += 1
+                seen.add(y)
             for r in sub_result:
                 result.add(tuple(sorted((x,) + r)))
         return [list(i) for i in result]
 
 
-class Solution2:
+class Solution3:
     """
-    Hashed with sort
-    Time Complexity: O(nlogn + n^2)
+    Hashset with sort
+    Time Complexity: O(n^2) = = n^2 + nlog(2, n)
+    Time Complexity: O(n^2)
     """
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -56,10 +72,11 @@ class Solution2:
         return result
 
 
-class Solution3:
+class Solution4:
     """
     Two pointer with sort
-    Time Complexity: O(nlogn + n^2)
+    Time Complexity: O(n^2) = nlog(2, n) + n^2
+    Time Complexity: O(1)
     """
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -86,24 +103,6 @@ class Solution3:
             for r in sub_result:
                 result.append([x] + list(r))
         return result
-
-
-class Solution4:
-    """
-    Brute Force:
-    Time Complexity: O(n^3)
-    Space Complexity: O(1)
-    """
-
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        triplets = set()
-        for i in range(len(nums) - 2):
-            for j in range(i + 1, len(nums) - 1):
-                for k in range(j + 1, len(nums)):
-                    if nums[i] + nums[j] + nums[k] == 0:
-                        triplets.add(tuple(sorted([nums[i], nums[j], nums[k]])))
-
-        return [list(x) for x in triplets]
 
 
 solutions = parametrize_solution_cls(
