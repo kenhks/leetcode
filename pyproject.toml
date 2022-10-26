@@ -5,22 +5,25 @@ description = ""
 authors = ["Ken HKS <kenhks014@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "~3.10.5"
+python = "~3.11.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "^22.8.0"
 isort = "^5.10.1"
 pytest = "^7.2.0"
+pytest-mock = "^3.10.0"
+pytest-timeout = "^2.1.0"
 pytest-sugar = "^0.9.5"
 flake8 = "^5.0.4"
 pyproject-flake8 = "^5.0.4.post1"
-mypy = "^0.971"
-pytest-mock = "^3.10.0"
-pytest-timeout = "^2.1.0"
+mypy = "^0.982"
 
 [tool.pytest.ini_options]
 minversion = "7.0"
 addopts = "--timeout 120"
+pythonpath = [
+  ".",
+]
 norecursedirs = [
     ".git",
     ".venv",
