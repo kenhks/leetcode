@@ -16,7 +16,6 @@ class Solution:
         max_sum = 0
         for size in range(1, len(nums) + 1):
             for i in range(len(nums) - size + 1):
-                print(f"{nums[i : i + size] = }")
                 max_sum = max(max_sum, sum(nums[i : i + size]))
         return max_sum
 

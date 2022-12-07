@@ -37,8 +37,6 @@ class Solution2:
             freq_counter = Counter(char_counter.values())
             if len(freq_counter) == 2:
                 freq1, freq2 = sorted(freq_counter.keys())
-                print(f"{freq1, freq_counter[freq1] = }")
-                print(f"{freq2, freq_counter[freq2] = }")
                 if freq1 == 1 and freq_counter[freq1] == 1:
                     ans = True
                 elif freq2 - freq1 == 1 and freq_counter[freq2] == 1:
