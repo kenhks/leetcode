@@ -6,19 +6,32 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Hashset size
+    Time Complexity: O(n) = 2n
+    Space Complexity: O(n)
+    """
+
     def containsDuplicate(self, nums: List[int]) -> bool:
         return len(nums) > len(set(nums))
 
 
 class Solution2:
+    """
+    Hashset, early break
+    Time Complexity: O(n) = n
+    Space Complexity: O(n)
+    """
+
     def containsDuplicate(self, nums: List[int]) -> bool:
-        nums_set = {}
-        for i in nums:
-            if i in nums_set:
-                return True
-            else:
-                nums_set[i] = True
-        return False
+        ans = False
+        seen = set()
+        for n in nums:
+            if n in seen:
+                ans = True
+                break
+            seen.add(n)
+        return ans
 
 
 solutions = parametrize_solution_cls(
