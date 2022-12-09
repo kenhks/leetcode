@@ -8,7 +8,7 @@ from utils import parametrize_solution_cls
 class Solution:
     """
     Scan
-    Time Complexity: O(n^3)
+    Time Complexity: O(n)
     Space Complexity: O(1)
     """
 
