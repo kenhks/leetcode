@@ -4,6 +4,11 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Hashset
+    Time Complexity: O(log(2, n))
+    Space Complexity: O(log(2, n))
+    """
     def isHappy(self, n: int) -> bool:
         seen = set()
         while n != 1 and n not in seen:
