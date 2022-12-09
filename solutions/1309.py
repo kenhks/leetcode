@@ -1,4 +1,15 @@
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
+    """
+    Check next 2 character
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+
     def freqAlphabets(self, s: str) -> str:
         decrpyted_s = ""
         a_ord_offset = ord("a") - 1
@@ -13,9 +24,24 @@ class Solution:
         return decrpyted_s
 
 
-def test_1():
-    assert Solution().freqAlphabets("10#11#12") == "jkab"
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+    ],
+    "freqAlphabets",
+)
 
 
-def test_2():
-    assert Solution().freqAlphabets("1326#") == "acz"
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution("10#11#12") == "jkab"
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution("1326#") == "acz"
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#") == "abcdefghijklmnopqrstuvwxyz"
