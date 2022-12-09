@@ -1,22 +1,45 @@
+import pytest
+
+from utils import parametrize_solution_cls
+
+
 class Solution:
+    """
+    Concat alternatively
+    Time Complexity: O(m+n)
+    Space Complexity: O(1)
+    m = len(word1), n = len(word2)
+    """
+
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        merged_word = ""
+        ans = ""
         for i, j in zip(word1, word2):
-            merged_word += i + j
+            ans += f"{i}{j}"
         if len(word2) > len(word1):
-            merged_word += word2[len(word1) - len(word2) :]
+            ans += word2[len(word1) - len(word2) :]
         elif len(word1) > len(word2):
-            merged_word += word1[len(word2) - len(word1) :]
-        return merged_word
+            ans += word1[len(word2) - len(word1) :]
+        return ans
 
 
-def test_1():
-    assert Solution().mergeAlternately("abc", "pqr") == "apbqcr"
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+    ],
+    "mergeAlternately",
+)
 
 
-def test_2():
-    assert Solution().mergeAlternately("ab", "pqrs") == "apbqrs"
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
+    assert solution("abc", "pqr") == "apbqcr"
 
 
-def test_3():
-    assert Solution().mergeAlternately("abcd", "pq") == "apbqcd"
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
+    assert solution("ab", "pqrs") == "apbqrs"
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_3(solution):
+    assert solution("abcd", "pq") == "apbqcd"
