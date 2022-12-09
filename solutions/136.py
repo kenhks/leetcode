@@ -7,11 +7,23 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Bitwise XOR
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+
     def singleNumber(self, nums: List[int]) -> int:
         return reduce(lambda x, y: x ^ y, nums)
 
 
 class Solution2:
+    """
+    Hashset
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
+
     def singleNumber(self, nums: List[int]) -> int:
         seen = set()
         unique = set()
