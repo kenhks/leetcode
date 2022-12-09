@@ -5,6 +5,14 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Hashmap for sorted word
+    Time Complexity: O(mn(log(2, n))
+    Space Complexity: O(m)
+    m = the number of words in string
+    n = the number of character in word
+    """
+
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         size_map = dict()
         for word in strs:
@@ -34,9 +42,7 @@ def test_1(solution):
         ],
         key=lambda x: sorted(x[0]),
     )
-    actual = sorted(
-        solution(["eat", "tea", "tan", "ate", "nat", "bat"]), key=lambda x: sorted(x[0])
-    )
+    actual = sorted(solution(["eat", "tea", "tan", "ate", "nat", "bat"]), key=lambda x: sorted(x[0]))
     assert len(expected) == len(actual)
     for actual_ele, expected_ele in zip(actual, expected):
         assert set(actual_ele) == set(expected_ele)
