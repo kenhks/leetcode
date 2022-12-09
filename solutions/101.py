@@ -1,6 +1,7 @@
-from typing import Optional
-import pytest
 from collections import deque
+from typing import Optional
+
+import pytest
 
 from data_structures import TreeNode
 from utils import create_Tree, parametrize_solution_cls
