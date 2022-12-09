@@ -4,19 +4,21 @@ from utils import parametrize_solution_cls
 
 
 class Solution:
+    """
+    Scan with stack
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
+
     def isValid(self, s: str) -> bool:
         stack = []
-        close_brackets = ["}", "]", ")"]
-        open_brackets = ["{", "[", "("]
-        bracket_map = {i: j for i, j in zip(close_brackets, open_brackets)}
+        bracket_map = {"(": ")", "{": "}", "[": "]"}
         for c in s:
-            if c in open_brackets:
+            if c in bracket_map:
                 stack.append(c)
-            else:
-                if stack and stack[-1] == bracket_map[c]:
-                    stack.pop()
-                else:
-                    return False
+            elif len(stack) == 0 or bracket_map[stack.pop()] != c:
+                stack.append(c)
+                break
         return len(stack) == 0
 
 
