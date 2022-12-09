@@ -1,8 +1,16 @@
+import pytest
+
 from data_structures import ListNode
-from utils import create_LinkedList
+from utils import create_LinkedList, parametrize_solution_cls
 
 
 class Solution:
+    """
+    Math
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+
     def getDecimalValue(self, head: ListNode) -> int:
         value = 0
         while head:
@@ -12,6 +20,12 @@ class Solution:
 
 
 class Solution2:
+    """
+    Bitwise Operation
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    """
+
     def getDecimalValue(self, head: ListNode) -> int:
         value = 0
         while head:
@@ -20,21 +34,22 @@ class Solution2:
         return value
 
 
-def test_1():
+solutions = parametrize_solution_cls(
+    [
+        Solution,
+        Solution2,
+    ],
+    "getDecimalValue",
+)
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_1(solution):
     head = create_LinkedList([1, 0, 1])
-    assert Solution().getDecimalValue(head) == 5
+    assert solution(head) == 5
 
 
-def test_2():
+@pytest.mark.parametrize("solution", solutions)
+def test_2(solution):
     head = create_LinkedList([0])
-    assert Solution().getDecimalValue(head) == 0
-
-
-def test_3():
-    head = create_LinkedList([1, 0, 1])
-    assert Solution2().getDecimalValue(head) == 5
-
-
-def test_4():
-    head = create_LinkedList([0])
-    assert Solution2().getDecimalValue(head) == 0
+    assert solution(head) == 0
