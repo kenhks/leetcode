@@ -22,27 +22,22 @@ class Solution2:
     """
 
     def reverseWords(self, s: str) -> str:
-        reversed_s = []
-        word_left = word_right = -1
+        ans = ""
+        prev_isspace = True
+        word_start_index = -1
         for i, c in enumerate(s):
-            if word_left < 0 and c == " ":
-                continue
-            if c != " ":
-                if word_left == -1:
-                    word_left = i
-                word_right = i
+            if c.isspace():
+                if not prev_isspace:
+                    ans = f"{s[word_start_index : i]} {ans}"
+                    print(f"{ans = }")
+                prev_isspace = True
             else:
-                reversed_s.append(s[word_left : word_right + 1])
-                word_left = word_right = -1
-        if word_left != -1:
-            reversed_s.append(s[word_left : word_right + 1])
-        res = ""
-        for i in range(len(reversed_s) - 1, -1, -1):
-            if i == len(reversed_s) - 1:
-                res = reversed_s[i]
-            else:
-                res += f" {reversed_s[i]}"
-        return res
+                if prev_isspace:
+                    word_start_index = i
+                prev_isspace = False
+        if not prev_isspace:
+            ans = f"{s[word_start_index : ]} {ans}"
+        return ans[:-1]
 
 
 solutions = parametrize_solution_cls(
@@ -67,3 +62,8 @@ def test_2(solution):
 @pytest.mark.parametrize("solution", solutions)
 def test_3(solution):
     assert solution("a good   example") == "example good a"
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_4(solution):
+    assert solution("a b c d e") == "e d c b a"
