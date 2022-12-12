@@ -1,4 +1,5 @@
 from typing import Optional
+
 import pytest
 
 from data_structures import TreeNode

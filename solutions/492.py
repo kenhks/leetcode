@@ -1,5 +1,6 @@
 import math
 from typing import List
+
 import pytest
 
 from utils import parametrize_solution_cls

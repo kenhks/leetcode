@@ -1,4 +1,5 @@
 from collections import Counter
+
 import pytest
 
 from utils import parametrize_solution_cls
