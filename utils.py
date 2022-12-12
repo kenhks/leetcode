@@ -36,10 +36,12 @@ def get_LinkedList_values(node: ListNode) -> List:
     return values
 
 
-def create_Tree(nums: List) -> Optional[TreeNode]:
+def create_Tree(nums: List, node_cls=None) -> Optional[TreeNode]:
     if not nums:
         return None
-    nodes = [TreeNode(i) if i is not None else None for i in nums]
+    if not node_cls:
+        node_cls = TreeNode
+    nodes = [node_cls(val=i) if i is not None else None for i in nums]
     for i, node in enumerate(nodes):
         if not node:
             continue
@@ -99,6 +101,20 @@ def get_Tree_values(root: TreeNode) -> List:
                 new_level_nodes.append(None)
                 new_level_nodes.append(None)
         level_nodes = new_level_nodes
+    return values
+
+
+def get_perfect_BinaryTree_next_values(root: Optional[TreeNode]) -> List:
+    values = []
+    if root:
+        node = next_node = root
+        while node:
+            while next_node:
+                values.append(next_node.val)
+                next_node = next_node.next
+            else:
+                values.append(None)
+            node = next_node = node.left
     return values
 
 

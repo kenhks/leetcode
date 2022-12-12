@@ -35,7 +35,20 @@ class TreeNode:
         self.right = right
 
     def __str__(self):
-        return f"{self.val, self.left, self.right}"
+        return f"(val={self.val}, left={self.left}, right={self.right})"
 
     def __repr__(self):
         return f"{self.__class__.__name__}(val={self.val})"
+
+
+class TreeNode2(TreeNode):
+    """
+    TreeNode with extra pointer `next`
+    """
+
+    def __init__(self, val, next=None, **kwargs):
+        super().__init__(val, **kwargs)
+        self.next = next
+
+    def __str__(self):
+        return super().__str__()[:-1] + f"{self.next})"
