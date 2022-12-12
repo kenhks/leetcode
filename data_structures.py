@@ -13,7 +13,19 @@ class ListNode:
 class Node:
     def __init__(self, val=None, children=None):
         self.val = val
-        self.children = children
+        self.children = children or []
+
+    def __str__(self):
+        res = f"{self.__class__.__name__}(val={self.val})"
+        if self.children:
+            res += f"(children={self.children})"
+        return res
+
+    def __repr__(self):
+        res = f"{self.__class__.__name__}(val={self.val})"
+        if self.children:
+            res += f"(children={self.children})"
+        return res
 
 
 class TreeNode:

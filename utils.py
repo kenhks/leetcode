@@ -1,6 +1,6 @@
 from typing import List, Optional, Tuple, Union
 
-from data_structures import ListNode, TreeNode
+from data_structures import ListNode, Node, TreeNode
 
 
 def create_LinkedList(
@@ -51,6 +51,38 @@ def create_Tree(nums: List) -> Optional[TreeNode]:
         if right_index < len(nodes):
             node.right = nodes[right_index]
     return nodes[0]
+
+
+def create_GenericTree(values):
+    if not values:
+        return None
+    root = Node(values[0])
+    n = len(values)
+    level_left = level_right = 2
+    prev_level_nodes = [root]
+    while level_left <= level_right < n:
+        none_count = 0
+        while level_right < n:
+            if values[level_right] is None:
+                none_count += 1
+                if none_count == len(prev_level_nodes):
+                    break
+            level_right += 1
+        parent = prev_level_nodes.pop(0)
+        level_nodes = []
+        for v in values[level_left:level_right]:
+            if not v:
+                parent = prev_level_nodes.pop(0)
+            else:
+                new_node = Node(v)
+                if parent.children:
+                    parent.children.append(new_node)
+                else:
+                    parent.children = [new_node]
+                level_nodes.append(new_node)
+        prev_level_nodes = level_nodes
+        level_right = level_left = level_right + 1
+    return root
 
 
 def get_Tree_values(root: TreeNode) -> List:
