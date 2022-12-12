@@ -7,7 +7,7 @@ from utils import parametrize_solution_cls
 
 class Solution:
     """
-    Scan with two pointer
+    Two pointer
     Time Complexity: O(n)
     Space Complexity: O(1)
     """
@@ -22,7 +22,7 @@ class Solution:
                 right = n
             else:
                 if left == right:
-                    ans.append(str(left))
+                    ans.append(f"{left}")
                 else:
                     ans.append(f"{left}->{right}")
                 left = right = n
@@ -50,3 +50,13 @@ def test_2(solution):
 @pytest.mark.parametrize("solution", solutions)
 def test_3(solution):
     assert solution(nums=[]) == []
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_4(solution):
+    assert solution(nums=[]) == [1]
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_5(solution):
+    assert solution(nums=[1, 3, 5]) == ["1", "3", "5"]
