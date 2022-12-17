@@ -22,10 +22,7 @@ class Node:
         return res
 
     def __repr__(self):
-        res = f"{self.__class__.__name__}(val={self.val})"
-        if self.children:
-            res += f"(children={self.children})"
-        return res
+        return self.__str__()
 
 
 class TreeNode:
