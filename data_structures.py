@@ -4,10 +4,10 @@ class ListNode:
         self.next = next
 
     def __str__(self):
-        return f"{self.val, self.next}"
+        return f"{self.__class__.__name__}(val={self.val}, left={self.left}, right={self.right})"
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(id={id(self)},val={self.val})"
+        return self.__str__()
 
 
 class Node:

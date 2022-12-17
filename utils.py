@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List, Optional, Tuple, Union
 
 from data_structures import ListNode, Node, TreeNode
@@ -37,22 +38,48 @@ def get_LinkedList_values(node: ListNode) -> List:
 
 
 def create_Tree(nums: List, node_cls=None) -> Optional[TreeNode]:
-    if not nums:
+    if not nums or nums[0] is None:
         return None
-    if not node_cls:
-        node_cls = TreeNode
-    nodes = [node_cls(val=i) if i is not None else None for i in nums]
-    for i, node in enumerate(nodes):
-        if not node:
-            continue
-        left_index = 2 * i + 1
-        if left_index < len(nodes):
-            node.left = nodes[left_index]
-        left_index = 2 * i + 1
-        right_index = left_index + 1
-        if right_index < len(nodes):
-            node.right = nodes[right_index]
-    return nodes[0]
+    nums = deque(nums)
+    node_cls = node_cls or TreeNode
+    root = node_cls(nums.popleft())
+    level_nodes = [root]
+
+    def create_node(val):
+        if val:
+            return node_cls(val)
+        return
+
+    while level_nodes and len(nums):
+        new_level_nodes = []
+        for node in level_nodes:
+            if not nums:
+                break
+            left_node = create_node(nums.popleft())
+            right_node = create_node(nums.popleft()) if nums else None
+            if left_node:
+                node.left = left_node
+                new_level_nodes.append(left_node)
+            if right_node:
+                node.right = right_node
+                new_level_nodes.append(right_node)
+        level_nodes = new_level_nodes
+    return root
+
+
+def get_Tree_values(root: TreeNode) -> List:
+    level_nodes = [root]
+    values = []
+    while any(i is not None for i in level_nodes):
+        values.extend([i.val if i is not None else None for i in level_nodes])
+        new_level_nodes = []
+        for n in level_nodes:
+            if not n:
+                continue
+            new_level_nodes.append(n.left)
+            new_level_nodes.append(n.right)
+        level_nodes = new_level_nodes
+    return values
 
 
 def create_GenericTree(values):
@@ -85,23 +112,6 @@ def create_GenericTree(values):
         prev_level_nodes = level_nodes
         level_right = level_left = level_right + 1
     return root
-
-
-def get_Tree_values(root: TreeNode) -> List:
-    level_nodes = [root]
-    values = []
-    while any(i is not None for i in level_nodes):
-        values.extend([i.val if i is not None else None for i in level_nodes])
-        new_level_nodes = []
-        for n in level_nodes:
-            if n:
-                new_level_nodes.append(n.left)
-                new_level_nodes.append(n.right)
-            else:
-                new_level_nodes.append(None)
-                new_level_nodes.append(None)
-        level_nodes = new_level_nodes
-    return values
 
 
 def get_perfect_BinaryTree_next_values(root: Optional[TreeNode]) -> List:
