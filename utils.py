@@ -46,9 +46,8 @@ def create_Tree(nums: List, node_cls=None) -> Optional[TreeNode]:
     level_nodes = [root]
 
     def create_node(val):
-        if val:
+        if val is not None:
             return node_cls(val)
-        return
 
     while level_nodes and len(nums):
         new_level_nodes = []
