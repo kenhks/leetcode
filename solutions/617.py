@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 import pytest
 
@@ -10,20 +10,18 @@ class Solution:
     """
     DFS
     Time Complexity: O(n)
-    Space Complexity: O(n)
+    Space Complexity: O(h)
+    h = height of tree ~= log(2, n)
     """
 
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
-        def dfs(node1, node2) -> TreeNode:
-            if node1 and node2:
-                new = TreeNode(node1.val + node2.val)
-                new.left = dfs(node1.left, node2.left)
-                new.right = dfs(node1.right, node2.right)
-                return new
-            else:
-                return node1 or node2
-
-        return dfs(root1, root2)
+        if root1 and root2:
+            new = TreeNode(root1.val + root2.val)
+            new.left = self.mergeTrees(root1.left, root2.left)
+            new.right = self.mergeTrees(root1.right, root2.right)
+            return new
+        else:
+            return root1 or root2
 
 
 solutions = parametrize_solution_cls(
