@@ -78,6 +78,8 @@ def get_Tree_values(root: TreeNode) -> List:
             new_level_nodes.append(n.left)
             new_level_nodes.append(n.right)
         level_nodes = new_level_nodes
+    while values[-1] is None:
+        values.pop()
     return values
 
 
