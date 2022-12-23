@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List, Optional
 
 import pytest
@@ -8,9 +9,10 @@ from utils import create_Tree, parametrize_solution_cls
 
 class Solution:
     """
-    DFS
+    DFS, Recursive
     Time Complexity: O(n)
-    Space Complexity: O(n)
+    Space Complexity: O(h)
+    h = the height of tree
     """
 
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
@@ -28,9 +30,33 @@ class Solution:
         return ans
 
 
+class Solution2:
+    """
+    DFS, Iterative with stack
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
+
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        ans = []
+        stack = deque([(0, root)]) if root else []
+        while stack:
+            checked, node = stack.pop()
+            if not checked:
+                stack.append((1, node))
+                if node.right:
+                    stack.append((0, node.right))
+                if node.left:
+                    stack.append((0, node.left))
+            else:
+                ans.append(node.val)
+        return ans
+
+
 solutions = parametrize_solution_cls(
     [
         Solution,
+        Solution2,
     ],
     "postorderTraversal",
 )
@@ -52,3 +78,9 @@ def test_2(solution):
 def test_3(solution):
     root = create_Tree([1])
     assert solution(root) == [1]
+
+
+@pytest.mark.parametrize("solution", solutions)
+def test_4(solution):
+    root = create_Tree([2, 4, 5, 9, None, 6, 7])
+    assert solution(root) == [9, 4, 6, 7, 5, 2]
