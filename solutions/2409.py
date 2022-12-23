@@ -1,4 +1,5 @@
 from typing import Tuple
+
 import pytest
 
 from utils import parametrize_solution_cls
