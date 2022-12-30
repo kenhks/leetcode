@@ -35,7 +35,7 @@ class Solution2:
 
 class Solution3:
     """
-    Set difference
+    Flag seen numbers
     Time Complexity: O(n) = 2n
     Space Complexity: O(1)
     """
