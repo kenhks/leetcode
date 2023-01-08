@@ -44,7 +44,7 @@ class Solution3:
     """
     Sort the input string
     Time Complexity: O(nlog(2, n)) = 2nlog(2, n) + n
-    Time Complexity: O(n) = n
+    Time Complexity: O(n) = 2n
     """
 
     def isAnagram(self, s: str, t: str) -> bool:

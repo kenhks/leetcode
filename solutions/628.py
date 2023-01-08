@@ -26,7 +26,7 @@ class Solution2:
     """
     Sort by desecnding
     Time Complexity: O(nlog(2,n))
-    Space Complexity: O(log(2, n))
+    Space Complexity: O(n)
     """
 
     def maximumProduct(self, nums: List[int]) -> int:

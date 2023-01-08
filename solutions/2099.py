@@ -28,7 +28,7 @@ class Solution2:
     """
     Sort with index and values
     Time Complexity: O(nlog(2, n)) = nlog(2, n)
-    Space Complexity: O(nlog(2, n))
+    Space Complexity: O(n)
     """
 
     def maxSubsequence(self, nums: List[int], k: int) -> List[int]:

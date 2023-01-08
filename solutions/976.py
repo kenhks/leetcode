@@ -9,7 +9,7 @@ class Solution:
     """
     Sort by desending and check for triangle equality
     Time Complexity: O(nlog(2, n)) = nlog(2, n) + n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def largestPerimeter(self, nums: List[int]) -> int:

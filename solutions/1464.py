@@ -9,7 +9,7 @@ class Solution:
     """
     Sort desecnding
     Time Complexity: O(nlog(2, n))
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def maxProduct(self, nums: List[int]) -> int:

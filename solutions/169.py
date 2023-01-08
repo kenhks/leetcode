@@ -51,7 +51,7 @@ class Solution3:
     """
     Sort and group
     Time Complexity: O(nlog(2,n))
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def majorityElement(self, nums: List[int]) -> int:

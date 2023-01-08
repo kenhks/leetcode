@@ -9,7 +9,7 @@ class Solution:
     """
     Sort by descending and search
     Time Complexity: O(n^2) = n^2 + nlog(2,n)
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def specialArray(self, nums: List[int]) -> int:

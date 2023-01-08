@@ -9,7 +9,7 @@ class Solution:
     """
     Sort by descending
     Time Complexity: O(nlog(2, n)) = nlog(2, n) + 2n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def minSubsequence(self, nums: List[int]) -> List[int]:

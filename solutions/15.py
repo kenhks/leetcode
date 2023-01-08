@@ -76,7 +76,7 @@ class Solution4:
     """
     Two pointer with sort
     Time Complexity: O(n^2) = nlog(2, n) + n^2
-    Time Complexity: O(1)
+    Time Complexity: O(n)
     """
 
     def threeSum(self, nums: List[int]) -> List[List[int]]:

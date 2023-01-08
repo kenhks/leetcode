@@ -9,7 +9,7 @@ class Solution:
     """
     Merge and Sort
     Time Complexity: O((m + n)log(2, m + n)) = (m + n)log(2, m + n) + m + n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:

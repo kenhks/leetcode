@@ -9,7 +9,7 @@ class Solution:
     """
     Sort then scan
     Time Complexity: O(nlog(2, n))
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def canMakeArithmeticProgression(self, arr: List[int]) -> bool:

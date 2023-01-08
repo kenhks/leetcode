@@ -9,7 +9,7 @@ class Solution:
     """
     Two Pointer with sort
     Time Complexity: O(mlog(2, m) + nlog(2, n)) = mlog(2, m) + nlog(2, n) + m + n
-    Space Complexity: O(1)
+    Space Complexity: O(m + n)
     """
 
     def findContentChildren(self, g: List[int], s: List[int]) -> int:

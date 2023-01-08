@@ -28,7 +28,7 @@ class Solution2:
     """
     Sort first
     Time Complexity: O(n^2) = n^2 + nlog(2, n)
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def numberOfWeakCharacters(self, properties: List[List[int]]) -> int:
@@ -46,7 +46,7 @@ class Solution3:
     """
     Sort descending by attack, ascending by defence
     Time Complexity: O(nlog(2, n)) = nlog(2, n) + n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def numberOfWeakCharacters(self, properties: List[List[int]]) -> int:

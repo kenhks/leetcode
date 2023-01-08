@@ -9,7 +9,7 @@ class Solution:
     """
     Sort
     Time Complexity: O(nlog(2, n)) = nlog(2, n) + n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def arrayPairSum(self, nums: List[int]) -> int:

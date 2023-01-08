@@ -24,7 +24,7 @@ class Solution2:
     """
     Sort the array
     Time Complexity: O(nlog(2, n)) = nlog(2, n)  + 2n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def findKthLargest(self, nums: List[int], k: int) -> int:

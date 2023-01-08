@@ -9,7 +9,7 @@ class Solution:
     """
     Median
     Time Complexity: O(n)
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def minMoves2(self, nums: List[int]) -> int:

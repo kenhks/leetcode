@@ -9,8 +9,9 @@ from utils import parametrize_solution_cls
 class Solution:
     """
     Sort two list and search with two Pointer
-    Time Complexity: O(nlog(2,n)) = 2n(log(2,n))
-    Space Complexity: O(1)
+    Time Complexity: O(mlog(2, m) + nlog(2, n)) = mlog(2, m) + nlog(2, n) + m + n
+    Space Complexity: O(m + n)
+    m = len(nums1), n = len(nums2)
     """
 
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
@@ -35,6 +36,7 @@ class Solution2:
     Counter
     Time Complexity: O(m + n)
     Space Complexity: O(m)
+    m = len(nums1), n = len(nums2)
     """
 
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
@@ -58,6 +60,7 @@ class Solution3:
     Python Built-in
     Time Complexity: O(m + n)
     Space Complexity: O(m + n)
+    m = len(nums1), n = len(nums2)
     """
 
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:

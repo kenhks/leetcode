@@ -24,7 +24,7 @@ class Solution2:
     """
     Sort and two pointer
     Time Complexity: O(nlog(2, n)) = nlog(2, n) + n
-    Space Complexity: O(1)
+    Space Complexity: O(n)
     """
 
     def minimumDifference(self, nums: List[int], k: int) -> int:

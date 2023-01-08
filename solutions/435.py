@@ -9,7 +9,7 @@ class Solution:
     """
     Sort by start and end
     Time Complexity: O(nlog(2, n)) = nlog(2, n)) + n
-    Space Complexity: O(1) = 1
+    Space Complexity: O(n)
     """
 
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
@@ -29,7 +29,7 @@ class Solution2:
     """
     Sort by end only
     Time Complexity: O(nlog(2, n)) = nlog(2, n)) + n
-    Space Complexity: O(1) = 1
+    Space Complexity: O(n)
     """
 
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:

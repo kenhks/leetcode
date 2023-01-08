@@ -7,7 +7,7 @@ class Solution:
     """
     Array Counter for lowercase letter
     Time Complexity: O(m + n) = m + n + 26 + 2log(2, 26) + 26
-    Space Complexity: O(1) = 52
+    Space Complexity: O(1) = 104
     """
 
     def closeStrings(self, word1: str, word2: str) -> bool:

@@ -28,7 +28,7 @@ class Solution2:
     """
     Sort
     Time Complexity: O(nlog(2, n)) = nlog(2, n) + n
-    Space Complexity: O(log(2, n))
+    Space Complexity: O(n)
     """
 
     def findErrorNums(self, nums: List[int]) -> List[int]:

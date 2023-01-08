@@ -29,8 +29,8 @@ class Solution:
 class Solution2:
     """
     Sort
-    Time Complexity: O(n log(2, n)) = 2nlog(2, n) + 2n
-    Space Complexity: O(1)
+    Time Complexity: O(nlog(2, n)) = 2nlog(2, n) + 2n
+    Space Complexity: O(n) = 2n
     """
 
     def findTheDifference(self, s: str, t: str) -> str:
