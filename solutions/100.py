@@ -1,3 +1,4 @@
+from collections import deque
 from typing import Optional
 
 import pytest
@@ -8,7 +9,7 @@ from utils import create_Tree, parametrize_solution_cls
 
 class Solution:
     """
-    Recursive
+    DFS, Recursive
     Time Complexity: O(n)
     Space Complexity: O(n)
     """
@@ -19,9 +20,37 @@ class Solution:
         return p is q
 
 
+class Solution2:
+    """
+    BFS, Iterative
+    Time Complexity: O(n)
+    Space Complexity: O(n)
+    """
+
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        ans = True
+        stack = deque([(p, q)])
+        while stack:
+            for _ in range(len(stack)):
+                a, b = stack.popleft()
+                if a and b:
+                    if a.val != b.val:
+                        ans = False
+                    stack.append((a.left, b.left))
+                    stack.append((a.right, b.right))
+                elif a is None and b is None:
+                    pass
+                else:
+                    ans = False
+                if not ans:
+                    break
+        return ans
+
+
 solutions = parametrize_solution_cls(
     [
         Solution,
+        Solution2,
     ],
     "isSameTree",
 )
