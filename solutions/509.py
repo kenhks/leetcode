@@ -38,20 +38,20 @@ solutions = parametrize_solution_cls(
     [
         Solution,
     ],
-    "get_anagram_period",
+    "fib",
 )
 
 
 @pytest.mark.parametrize("solution", solutions)
-def test_1():
-    assert Solution().fib(2) == 1
+def test_1(solution):
+    assert solution(2) == 1
 
 
 @pytest.mark.parametrize("solution", solutions)
-def test_2():
-    assert Solution().fib(3) == 2
+def test_2(solution):
+    assert solution(3) == 2
 
 
 @pytest.mark.parametrize("solution", solutions)
-def test_3():
-    assert Solution().fib(4) == 3
+def test_3(solution):
+    assert solution(4) == 3
