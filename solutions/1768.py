@@ -1,3 +1,6 @@
+from io import StringIO
+from itertools import zip_longest
+
 import pytest
 
 from utils import parametrize_solution_cls
@@ -22,9 +25,28 @@ class Solution:
         return ans
 
 
+class Solution2:
+    """
+    Concat alternatively
+    Time Complexity: O(m+n)
+    Space Complexity: O(1)
+    m = len(word1), n = len(word2)
+    """
+
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        ans = StringIO()
+        for i, j in zip_longest(word1, word2):
+            if i:
+                ans.write(i)
+            if j:
+                ans.write(j)
+        return ans.getvalue()
+
+
 solutions = parametrize_solution_cls(
     [
         Solution,
+        Solution2,
     ],
     "mergeAlternately",
 )
